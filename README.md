@@ -6,7 +6,7 @@ This README would normally document whatever steps are necessary to get your app
 
 * Quick summary
 * Version : 1.0
-* [Learn Markdown](https://bitbucket.org/tutorials/ums)
+* [UMS]link unavailable at the moment
 
 ### How do I get set up? ###
 
@@ -25,5 +25,5 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
+* baksajoshua09@gmail.com, karsanrichard@gmail.com
 * Other community or team contact
