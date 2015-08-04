@@ -21,10 +21,15 @@ class MY_Controller extends MX_Controller
 		$key = $this -> encrypt -> get_key();
 		$encrypted_data = $key . $data;
 		$data = md5($encrypted_data);
-
+		
 		return $data;
 	}
 
+	function get_user($id){
+		$user_details = $this->template->User_details($id);
+
+		return $user_details;
+	}
 	
 	function logout()
 	{
