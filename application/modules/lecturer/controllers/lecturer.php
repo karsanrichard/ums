@@ -28,13 +28,34 @@
 
 		function lecturer_units_lists($user_id)
 		{
-			$lec_units = $this->lecturer_m->get_lecturer_units($user_id);
+			$lec_units = $this->lecturer_m->get_lecturer_units_details($user_id);
 			// echo "<pre>";print_r($lec_units);die();
 			foreach ($lec_units as $key => $value) {
-				$this->units .= '<li><a href="#"> <i class="fa fa-book"></i>'.$value["unit_name"].'</a></li>';
+				$this->units .= '<div class="col-md-3">
+			                    <div class="ibox">
+			                        <div class="ibox-content product-box">
+			                            <div class="product-imitation">
+			                                <a href="'.base_url().'lecturer/unit_details/'.$user_id.'/'.$value["unit_id"].'">'.$value["unit_name"].'</a>
+			                            </div>
+			                            <div class="product-desc">
+			                                <span class="product-price">
+			                                    Students: #
+			                                </span>
+			                                <small class="text-muted">Course: </small>
+			                                <a href="#" class="product-name"> '.$value["course_name"].'</a>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>';
 			}
 			// echo $this->units;
 			return $this->units;
+		}
+
+		function unit_details($user_id,$unit_id)
+		{
+			$unit_details = $this->lecturer_m->get_unit_details($user_id,$unit_id);
+			echo "<pre>";print_r($unit_details);die();
 		}
 	}
 ?>

@@ -21,7 +21,7 @@ class MY_Controller extends MX_Controller
 		$key = $this -> encrypt -> get_key();
 		$encrypted_data = $key . $data;
 		$data = md5($encrypted_data);
-		
+		echo $data;
 		return $data;
 	}
 
