@@ -30,6 +30,11 @@ class MY_Controller extends MX_Controller
 
 		return $user_details;
 	}
+
+	function login_reroute()
+	{
+				
+	}
 	
 	function logout()
 	{

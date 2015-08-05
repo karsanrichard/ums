@@ -16,6 +16,9 @@
 
     <!-- Gritter -->
     <link href="<?php echo base_url();?>assets/backend/js/plugins/gritter/jquery.gritter.css" rel="stylesheet">
+    <!-- Dropezone -->
+    <link href="<?php echo base_url();?>assets/backend/css/plugins/dropzone/basic.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/backend/css/plugins/dropzone/dropzone.css" rel="stylesheet">
 
     <link href="<?php echo base_url();?>assets/backend/css/animate.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/backend/css/style.css" rel="stylesheet">
@@ -141,7 +144,7 @@
 
 
                 <li>
-                    <a href="login.html">
+                    <a href="<?php echo base_url();?>auth">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
@@ -201,20 +204,22 @@
 
     <!-- Toastr -->
     <script src="<?php echo base_url();?>assets/backend/js/plugins/toastr/toastr.min.js"></script>
+    <!-- DROPZONE -->
+    <script src="<?php echo base_url();?>assets/backend/js/plugins/dropzone/dropzone.js"></script>
 
 
     <script>
         $(document).ready(function() {
-            setTimeout(function() {
-                toastr.options = {
-                    closeButton: true,
-                    progressBar: true,
-                    showMethod: 'slideDown',
-                    timeOut: 4000
-                };
-                toastr.success('Responsive Admin Theme', 'Welcome to INSPINIA');
+            // setTimeout(function() {
+            //     toastr.options = {
+            //         closeButton: true,
+            //         progressBar: true,
+            //         showMethod: 'slideDown',
+            //         timeOut: 4000
+            //     };
+            //     toastr.success('University Learning System', 'Welcome to UMS');
 
-            }, 1300);
+            // }, 1300);
 
 
             var data1 = [
@@ -334,6 +339,32 @@
             };
             var ctx = document.getElementById("polarChart").getContext("2d");
             var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
+
+            Dropzone.options.myAwesomeDropzone = {
+
+                autoProcessQueue: false,
+                uploadMultiple: true,
+                parallelUploads: 100,
+                maxFiles: 100,
+
+                // Dropzone settings
+                init: function() {
+                    var myDropzone = this;
+
+                    this.element.querySelector("button[type=submit]").addEventListener("click", function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        myDropzone.processQueue();
+                    });
+                    this.on("sendingmultiple", function() {
+                    });
+                    this.on("successmultiple", function(files, response) {
+                    });
+                    this.on("errormultiple", function(files, response) {
+                    });
+                }
+
+            }
 
         });
     </script>

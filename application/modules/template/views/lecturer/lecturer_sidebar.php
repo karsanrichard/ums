@@ -1,3 +1,4 @@
+<?php $uid = $this->session->userdata('userid');?>
 <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
@@ -11,7 +12,7 @@
                                 <li><a href="contacts.html">Contacts</a></li>
                                 <li><a href="mailbox.html">Mailbox</a></li>
                                 <li class="divider"></li>
-                                <li><a href="login.html">Logout</a></li>
+                                <li><a href="<?php echo base_url();?>auth">Logout</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">
@@ -19,13 +20,13 @@
                         </div>
                     </li>
                     <li class="active">
-                        <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
+                        <a href="<?php echo base_url();?>lecturer"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-book"></i> <span class="nav-label">My Units</span></a>
+                        <a href="<?php echo base_url();?>lecturer/lecturer_units"><i class="fa fa-book"></i> <span class="nav-label">My Units</span></a>
                     </li>
                     <li>
-                        <a href=""><i class="fa fa-twitch"></i> <span class="nav-label">Messages</span><span class="label label-info pull-right">62</span></a>
+                        <a href="<?php echo base_url();?>messages/read"><i class="fa fa-twitch"></i> <span class="nav-label">Messages</span><span class="label label-info pull-right">62</span></a>
                     </li>
                                        
                 </ul>
