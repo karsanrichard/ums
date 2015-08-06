@@ -16,47 +16,69 @@ class Notes extends MY_Controller
 	{
 		$note_types = $this->notes_model->get_notes_types();
 
-		$this->notes_dropdown .= "<select name='notes_type' id='notes_type'>";
-		$this->notes_dropdown .= "<option value='' selected='true' disabled='true'>**Select the type of upload**</option>";
+		$this->notes_dropdown .= '<select class="chosen-select form-control" style="width:320px;" tabindex="2"  name="notes_type" id="notes_type">';
+		$this->notes_dropdown .= '<option value="" selected="true" disabled="true">**Select the type of upload**</option>';
 			foreach ($note_types as $key => $value) {
 				$this->notes_dropdown .= '<option value="'.$value["id"].'">'.$value["note_type"].'</option>';
 				// $this->notes_dropdown .= "<option value='".$value['id']."''>".$value['note_type']."<option>";
 			}
-		$this->notes_dropdown .= "</select>";
-		
+		$this->notes_dropdown .= '</select>';
+		// echo $this->notes_dropdown;
 		return $this->notes_dropdown;
 	}
 
 	function upload_notes()
 	{
-		$topic = $this->m_lecturers->getTopicByID($this->input->post('topic'));
-		$unit_name = $this->m_lecturers->get_unit($this->input->post('unit'))[0]['unit_name'];
-		$path = '';
-		$config['upload_path'] = './upload/notes/';
-		$config['allowed_types'] = 'pdf|docx|ppt';
-		$this->load->library('upload', $config);
-		// print_r($this->upload->do_upload('photos'));die;
-		if ( ! $this->upload->do_upload('upload_file'))
-		{
-			$error = array('error' => $this->upload->display_errors());
-			print_r($error);die;
-		}
-		else
-		{
-			$data = array('upload_data' => $this->upload->data());
-			foreach ($data as $key => $value) {
-				$path = base_url().'upload/notes/'.$value['file_name'];
-			}
+		$unit_details_id = $this->input->post('unit_details_id');
+		$topic = $this->input->post('topic');
+		$notes_type = $this->input->post('notes_type');
+		$files = $_FILES['filesToUpload'];
 
-			$request = $this->m_lecturers->add_notes($path);
+		$allowed = array('docx','doc','pdf','xlsx','jpg','jpeg');
+		$insert_array = array();
+		$count = 0;
+		$move_to = '././notes/';
+		$new_path = '';
 
-			if ($request) {
-				$notification_message = $this->session->userdata('secondname') . ' ' .$this->session->userdata('firstname') . ' posted notes to ' .$unit_name.' ' . $topic;
-				$this->m_lecturers->createNotification($notification_message, $_POST['unit']);
-				redirect(base_url() .'lecturer/page_to_load/upload_notes');
+		if($files['size'][0]>0) {
+			// echo "<pre>";print_r($_FILES);
+			foreach ($files['name'] as $key => $value) {
+				$file_ext = explode(".", $value);
+            	$file_ext = end($file_ext);
+
+            	if(in_array($file_ext, $allowed)){
+            		$accepted = $key;
+            		$accepted_path = $files['name'][$accepted];
+            		$temp_path = $files['tmp_name'][$accepted];
+            		move_uploaded_file($temp_path, $move_to.$accepted_path);
+            		$path = $files['name'][$accepted];
+            		$path = base_url().'notes/'.$path;
+            		$insert_array[$count] = array(
+            								'path' => $path,
+            								'note_type_id' => $notes_type,
+            								'topic_id' => $topic,
+            								'unit_details_id' => $unit_details_id
+            								);
+            	}else{
+            		$denied = $key;
+            	}
+            	$count++;
 			}
-			// echo "Success!";die;
+		} else {
+			$new_path = $this->input->post('url');
+			$insert_array[$count] = array(
+            								'path' => $new_path,
+            								'note_type_id' => $notes_type,
+            								'topic_id' => $topic,
+            								'unit_details_id' => $unit_details_id
+            								);
+
 		}
+		$insert = $this->notes_model->upload_notes($insert_array);
+		
+		
+		return $insert;
+			
 	}
 }
 ?>

@@ -16,5 +16,12 @@ class Notes_model extends MY_Model
 		
 		return $return;
 	}
+
+	function upload_notes($insert_array)
+	{
+		$result = $this->db->insert_batch('notes', $insert_array);
+
+		return $result;
+	}
 }
 ?>
