@@ -5,7 +5,7 @@
 */
 class Notes extends MY_Controller
 {
-	var $notes_dropdown;
+	var $notes_dropdown, $topics_dropdown, $notes;
 	function __construct()
 	{
 		parent::__construct();
@@ -79,6 +79,74 @@ class Notes extends MY_Controller
 		
 		return $insert;
 			
+	}
+
+	function lec_view_notes($unit_id=NULL,$lec_id=NULL)
+	{
+		$notes_details = $this->notes_model->get_notes($unit_id,$lec_id);
+		$all_topics = $this->notes_model->get_topics();
+		// echo "<pre>";print_r($notes_details);
+		// echo "<pre>";print_r($all_topics);
+		foreach ($all_topics as $key => $value) {
+			$this->notes .= '<h3>'.$value['topic_name'].'</h3>';
+			$this->notes .= '<div class="col-lg-12">';
+			foreach ($notes_details as $k => $v) {
+				if ($v['note_type'] == 'document') {
+						$ext = end(explode('.',$v['path']));
+						// echo $ext;
+						if ($ext == 'docx' || $ext == 'doc') {
+							$image_holder = base_url().'assets/placeholders/images-ms-word.png';
+						} else if ($ext == 'xlsx') {
+							$image_holder = base_url().'assets/placeholders/images-ms-excel.png';
+						}else if ($ext == 'pdf') {
+							$image_holder = base_url().'assets/placeholders/logo-adobe-pdf.jpg';
+						}else if ($ext == 'jpg' || $ext == 'jpeg') {
+							$image_holder = base_url().'assets/placeholders/imge-holder.png';
+						}
+						
+				} else {
+					$image_holder = base_url().'assets/placeholders/images-web.png';
+				}
+				
+				if ($value['topic_name'] == $v['topic_name']) {
+					$this->notes .= '<div class="file-box">
+						                <div class="file">
+						                    <a href="'.$v["path"].'">
+						                        <span class="corner"></span>
+
+						                        <div class="image">
+						                            <img alt="image" style="width:198px;height:130px;" class="img-responsive" src="'.$image_holder.'">
+						                        </div>
+						                        <div class="file-name">
+						                            '.$this->truncateStringWords(end(explode("/",$v["path"]))).'
+						                            <br/>
+						                            <small>Added: '.$v["date_uploaded"].'</small>
+						                        </div>
+						                    </a>
+						                </div>
+						            </div>';
+				}
+				
+			}
+			$this->notes .= '</div>';
+		}
+		// echo $this->notes;
+		return $this->notes;
+	}
+
+	function get_topics()
+	{
+		$topics = $this->notes_model->get_topics();
+		
+		$this->topics_dropdown .= '<select class="chosen-select form-control" style="width:320px;" tabindex="2"  name="topic" id="topic">';
+		$this->topics_dropdown .= '<option value="" selected="true" disabled="true">**Select the Topic**</option>';
+			foreach ($topics as $key => $value) {
+				$this->topics_dropdown .= '<option value="'.$value["id"].'">'.$value["topic_name"].'</option>';
+				
+			}
+		$this->topics_dropdown .= '</select>';
+		
+		return $this->topics_dropdown;
 	}
 }
 ?>

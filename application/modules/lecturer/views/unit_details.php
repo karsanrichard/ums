@@ -15,15 +15,45 @@
         </ol>
     </div>
 </div>
+<!-- Toggle Buttons -->
+<!-- <div class="wrapper wrapper-content animated fadeInRight">
+     <div class="row" id="filters">
+        <div class="col-md-4">
+            <div class="input-group m-b">
+                <div class="input-group-btn">
+                    <a href="<?php echo base_url();?>products/add"  class="btn btn-primary "><i class="fa fa-plus fa-rotate-270"></i>&nbsp;Add Product</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-md-4" style="margin-bottom:0px;">
+                <div class="input-group m-b">
+                    <div class="input-group-btn">
+                        <a href="#" id="button"  class="btn btn-primary "><i class="fa fa-plus fa-rotate-270"></i>&nbsp;Add Notes</a>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!-- Notes Display -->
+    <div class="row" id="notes">
+        <?php
+            echo $notes;
+        ?>
+    </div>
+    <!-- End of notes Display -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Notes Upload -->
+    <div class="row" id="add_notes">
+        <div class="col-lg-12">
             <div class="ibox-content m-b-sm border-bottom">
                 <div class="p-lg">
                     <h2>Upload Notes here.</h2>
                     <form role="form" class="form-inline" method="post" action="<?php echo base_url();?>lecturer/notes_upload" enctype="multipart/form-data">
                         <input type="hidden" value="<?php echo $unit_details['unit_details_id'];?>" name="unit_details_id" id="unit_details_id" />
+                        <input type="hidden" value="<?php echo $unit_details['unit_id'];?>" name="unit_id" id="unit_id" />
                         <div class="row">
                             <div class="form-group col-lg-6">
                             <label for="topic" class="sr-only">Topic: </label>
@@ -66,8 +96,15 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
+    $('#add_notes').hide();
     $('#upload').hide();
     $('#link').hide();
+
+    $('#button').click(function(){
+        $('#notes').hide();
+        $('#add_notes').show();
+        $('#button').attr('disabled', 'true');
+    });
 
     $('#notes_type').change(function(){
         sv = $(this).val();
@@ -80,6 +117,8 @@ $(document).ready(function(){
             $('#upload').hide();
         };
     });
+
+
 
     //get the input and UL list
     var input = document.getElementById('filesToUpload');

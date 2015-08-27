@@ -61,13 +61,6 @@ class Lecturer_m extends MY_Model
 		return $result->result_array();
 	}
 
-	function get_topics()
-	{
-		$sql = "SELECT * FROM `topics`";
-
-		$result = $this->db->query($sql);
-
-		return $result->result_array();
-	}
+	
 }
 ?>

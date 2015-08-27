@@ -41,6 +41,16 @@ class MY_Controller extends MX_Controller
 		$this->session->sess_destroy();
 		redirect(base_url());
 	}
+
+	public static function truncateStringWords($str, $maxlen=32)
+	{
+	    if (strlen($str) <= $maxlen) return $str;
+
+	    $newstr = substr($str, 0, $maxlen);
+	    if (substr($newstr, -1, 1) != ' ') $newstr = substr($newstr, 0, strrpos($newstr, " "));
+
+	    return $newstr;
+	}
     
 }
 

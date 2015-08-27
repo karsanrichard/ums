@@ -1,7 +1,7 @@
 <?php
 	class Lecturer extends MY_Controller
 	{
-		var $units, $topics_dropdown;
+		var $units;
 		function __construct()
 		{
 			parent:: __construct();
@@ -58,7 +58,8 @@
 			$user_id = $this->session->userdata('userid');
 			$this->data['unit_details'] = $this->unit_det($user_id,$unit_id);
 			$this->data['notes_dropdown'] = $this->notes->drop_notes_type();
-			$this->data['topics_dropdown'] = $this->topics();
+			$this->data['topics_dropdown'] = $this->notes->get_topics();
+			$this->data['notes'] = $this->notes->lec_view_notes($unit_id,$user_id);
 			
 			$this->data['content_view'] = 'lecturer/unit_details';
 			$this->data['title'] = 'UMS | Units';
@@ -69,32 +70,18 @@
 		function unit_det($user_id,$unit_id)
 		{
 			$unit_details = $this->lecturer_m->get_unit_details($user_id,$unit_id);
-
+			// echo "<pre>";print_r($unit_details);die();
 			return $unit_details[0];
-		}
-
-		function topics()
-		{
-			$topics = $this->lecturer_m->get_topics();
-
-			$this->topics_dropdown .= '<select class="chosen-select form-control" style="width:320px;" tabindex="2"  name="topic" id="topic">';
-			$this->topics_dropdown .= '<option value="" selected="true" disabled="true">**Select the Topic**</option>';
-				foreach ($topics as $key => $value) {
-					$this->topics_dropdown .= '<option value="'.$value["id"].'">'.$value["topic_name"].'</option>';
-					
-				}
-			$this->topics_dropdown .= '</select>';
-			
-			return $this->topics_dropdown;
 		}
 
 		function notes_upload()
 		{
+			$unit_id = $this->input->post('unit_id');
 			$upload = $this->notes->upload_notes();
 			$user_id = $this->session->userdata('userid');
 			// echo $user_id;
 			if ($upload) {
-				redirect(base_url()."lecturer/lecturer_units");
+				redirect(base_url()."lecturer/lecturer_units/".$unit_id);
 			} 
 			
 			
