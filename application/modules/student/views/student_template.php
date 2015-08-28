@@ -4,10 +4,9 @@
 <html lang="en">
 <!--<![endif]-->
 
-<!-- Mirrored from seantheme.com/color-admin-v1.6/admin/html/index_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 Feb 2015 19:57:23 GMT -->
 <head>
     <meta charset="utf-8" />
-    <title>UMS | Dashboard v2</title>
+    <title>UMS | Student Dashboard</title>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -76,7 +75,7 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Server Error Reports</h6>
+                                        <h6 class="media-heading">Richard Karsan</h6>
                                         <div class="text-muted f-s-11">3 minutes ago</div>
                                     </div>
                                 </a>
@@ -105,7 +104,7 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-plus media-object bg-green"></i></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading"> New User Registered</h6>
+                                        <h6 class="media-heading">Sender 2</h6>
                                         <div class="text-muted f-s-11">1 hour ago</div>
                                     </div>
                                 </a>
@@ -132,7 +131,7 @@
                         <ul class="dropdown-menu animated fadeInLeft">
                             <li class="arrow"></li>
                             <li><a href="javascript:;">Edit Profile</a></li>
-                            <li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
+                            <li><a href="javascript:;"><span class="badge badge-danger pull-right">5</span> Inbox</a></li>
                             <li><a href="javascript:;">Calendar</a></li>
                             <li><a href="javascript:;">Setting</a></li>
                             <li class="divider"></li>
@@ -195,17 +194,6 @@
             DashboardV2.init();
         });
     </script>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','../../../../www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-53034621-1', 'auto');
-      ga('send', 'pageview');
-    </script>
 </body>
 
-<!-- Mirrored from seantheme.com/color-admin-v1.6/admin/html/index_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 25 Feb 2015 19:57:47 GMT -->
-</html>
 

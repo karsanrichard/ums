@@ -15,7 +15,7 @@ class Auth extends MY_Controller
 	{
 		$this->logout();
 		$data['error'] = '';
-		$this->load->view('auth_v');
+		$this->load->view('auth_v2');
 	}
 
 	function login()
@@ -53,7 +53,7 @@ class Auth extends MY_Controller
 		else
 		{
 			$data['error'] = 'Login Error! Please Try Again';
-			$this->load->view('auth_v', $data);
+			$this->load->view('auth_v2', $data);
 		}
 	}	
 
