@@ -13,7 +13,7 @@ class Auth extends MY_Controller
 
 	function index()
 	{
-		$this->logout();
+		// $this->logout();
 		$data['error'] = '';
 		$this->load->view('auth_v2');
 	}
@@ -24,6 +24,7 @@ class Auth extends MY_Controller
 		$password = $this->input->post('password');
 
 		$hashed = $this->encrypt($password);
+		// echo "This ".$hashed;exit;
 
 		$authentication = $this->auth_m->getUser($email, $hashed);
 
@@ -38,6 +39,8 @@ class Auth extends MY_Controller
 				'userid' => $user_id,
 				'user_table' => $user_table
 			);
+
+			// echo "<pre>";print_r($user_details);echo "</pre>";exit;
 
 			$this->session->set_userdata($data);
 
@@ -57,9 +60,10 @@ class Auth extends MY_Controller
 		}
 	}	
 
-	function logout()
+	public function logout()
 	{
 		$this->session->sess_destroy();
+		redirect(base_url().'auth');
 	}
 }
 ?>

@@ -9,7 +9,7 @@
                 </div>
                 <div class="info">
                     Richard Karsan
-                    <small>Front end developer</small>
+                    <small>Student</small>
                 </div>
             </li>
         </ul>
