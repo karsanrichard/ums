@@ -1,0 +1,1 @@
+ALTER TABLE `students` ADD `email` VARCHAR(250) NOT NULL ;
