@@ -9,7 +9,7 @@
                 </div>
                 <div class="info">
                     Richard Karsan
-                    <small>Front end developer</small>
+                    <small>Student</small>
                 </div>
             </li>
         </ul>
@@ -35,7 +35,7 @@
                 </a>
                 <ul class="sub-menu">
                     <li><a href="<?php echo base_url().'student/student_inbox'; ?>">Inbox</a></li>
-                    <li><a href="email_compose.html">Compose</a></li>
+                    <li><a href="<?php echo base_url().'student/student_compose_messsage'; ?>">Compose</a></li>
                     <!-- <li><a href="email_detail.html">Detail</a></li> -->
                 </ul>
             </li>
