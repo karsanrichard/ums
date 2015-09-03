@@ -186,8 +186,8 @@
     <script src="<?php echo base_url();?>assets/backend/js/demo/peity-demo.js"></script>
 
     <!-- Custom and plugin javascript -->
-    <!--<script src="<?php echo base_url();?>assets/backend/js/inspinia.js"></script>-->
-    <!--<script src="<?php echo base_url();?>assets/backend/js/plugins/pace/pace.min.js"></script>-->
+    <script src="<?php echo base_url();?>assets/backend/js/inspinia.js"></script>
+    <script src="<?php echo base_url();?>assets/backend/js/plugins/pace/pace.min.js"></script>
 
     <!-- jQuery UI -->
     <script src="<?php echo base_url();?>assets/backend/js/plugins/jquery-ui/jquery-ui.min.js"></script>
