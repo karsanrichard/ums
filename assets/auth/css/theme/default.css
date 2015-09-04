@@ -64,3 +64,11 @@ Website: http://www.seantheme.com/color-admin-v1.6/admin/
     border-top-color: #00acac;
     border-left-color: #00acac;
 }
+
+.registration{
+    margin: 10px 25%;
+    /*position: absolute;*/
+}
+.panel{
+    border-radius: none!important;
+}

@@ -11,22 +11,22 @@ class Auth extends MY_Controller
 		$this->load->model('auth_m');
 	}
 
-	function index()
+	function index($error = '')
 	{
 		// $this->logout();
 		$data['error'] = '';
-		$this->load->view('auth_v2');
+		$this->load->view('auth_v2',$data);
 	}
 
 	function login()
 	{
 		$email = $this->input->post('email');
-		$password = $this->input->post('password');
+		$password = md5($this->input->post('password'));
 
-		$hashed = $this->encrypt($password);
-		// echo "This ".$hashed;exit;
+		// $hashed = $this->encrypt($password);
+		// echo "This ".$password;exit;
 
-		$authentication = $this->auth_m->getUser($email, $hashed);
+		$authentication = $this->auth_m->getUser($email, $password);
 
 		if($authentication['auth'] == TRUE)
 		{
@@ -49,16 +49,30 @@ class Auth extends MY_Controller
 			// $redirect_url = $this->getRedirect($user_type, $user_id);
 			// // echo $redirect_url;die();
 			
-			// // echo "<pre>";print_r($this->session->all_userdata());die;
+			// echo "<pre>";print_r($this->session->all_userdata());die;
 			// // echo base_url() . $redirect_url;die();
 			redirect(base_url() . $redirect_url);
 		}
 		else
 		{
-			$data['error'] = 'Login Error! Please Try Again';
-			$this->load->view('auth_v2', $data);
+			// $this->load->view('auth_v2', $data);
+			redirect(base_url().'auth/login_message/1/error');
 		}
 	}	
+
+	function login_message($message = NULL,$type = NULL)
+	{
+		// $this->logout();
+		if (isset($message)&&$type == 'error') {
+			$info = '</br><b><i class = "fa fa-exclamation-circle"></i> Login Error! Wrong Username or Password</b></br>';
+		}elseif (isset($message)&&$type == 'registration') {
+			$info = '</br><b><i class="fa fa-info-circle"></i> You have been successfully registered.<i class="fa fa-info-circle"></i></br>Proceed to Login </b></br>';
+		}
+
+		$data['message'] = $info;
+		// echo "<pre>";print_r($info);exit;
+		$this->load->view('auth_v2',$data);
+	}
 
 	public function logout()
 	{
