@@ -17,11 +17,9 @@ class Auth_m extends MY_Model
         
     	$details = $query->result_array();
 
-        $user_type = $this -> get_user_type($details[0]['user_type_id']);
-        // echo "<pre>";print_r($user_type);exit;
-
     	if($details)
     	{
+            $user_type = $this -> get_user_type($details[0]['user_type_id']);
     		$user['auth'] = TRUE;
     		$user['user_id'] = $details[0]['id'];
     		$user['usertype'] = $user_type[0]['user_type'];
@@ -30,11 +28,7 @@ class Auth_m extends MY_Model
     	{
     		$user['auth'] = FALSE;
     	}
-
-    	// echo "<pre>";print_r($user);die;
-
-        
-    	return $user;
+        return $user;
     }
 
     public function get_user_type($user_type_id){

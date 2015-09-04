@@ -21,13 +21,12 @@ class Auth extends MY_Controller
 	function login()
 	{
 		$email = $this->input->post('email');
-		$password = md5($this->input->post('password'));
+		$password = $this->input->post('password');
 
-		// $hashed = $this->encrypt($password);
-		// echo "This ".$password;exit;
-
-		$authentication = $this->auth_m->getUser($email, $password);
-
+		$hashed = $this->encrypt($password);
+		// echo $hashed;
+		$authentication = $this->auth_m->getUser($email, $hashed);
+		// echo "<pre>";print_r($authentication);die();
 		if($authentication['auth'] == TRUE)
 		{
 			$user_id = $authentication['user_id'];
