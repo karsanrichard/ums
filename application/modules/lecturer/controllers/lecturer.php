@@ -19,7 +19,7 @@
 
 		function lecturer_units()
 		{
-			$user_id = $this->session->userdata('userid');
+			$user_id = $this->_hashID($this->session->userdata('userid'));
 			$this->data['units'] = $this->lecturer_units_lists($user_id);
 			$this->data['content_view'] = 'lecturer/units_v';
 			$this->data['title'] = 'UMS | Units';
@@ -29,6 +29,7 @@
 
 		public function lecturer_units_lists($user_id)
 		{
+			$user_id = $this->hash_reverse($user_id);
 			$lec_units = $this->lecturer_m->get_lecturer_units_details($user_id);
 			// echo "<pre>";print_r($lec_units);die();
 			foreach ($lec_units as $key => $value) {
@@ -36,7 +37,7 @@
 			                    <div class="ibox">
 			                        <div class="ibox-content product-box">
 			                            <div class="product-imitation">
-			                                <a href="'.base_url("lecturer/unit_details/".$value["unit_id"]).'">'.$value["unit_name"].'</a>
+			                                <a href="'.base_url("lecturer/unit_details/".$this->_hashID($value["unit_id"])).'">'.$value["unit_name"].'</a>
 			                            </div>
 			                            <div class="product-desc">
 			                                <span class="product-price">
@@ -55,6 +56,7 @@
 
 		function unit_details($unit_id)
 		{
+			$unit_id = $this->hash_reverse($unit_id);
 			$user_id = $this->session->userdata('userid');
 			$this->data['unit_details'] = $this->unit_det($user_id,$unit_id);
 			$this->data['notes_dropdown'] = $this->notes->drop_notes_type();

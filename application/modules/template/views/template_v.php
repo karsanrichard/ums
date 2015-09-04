@@ -146,7 +146,7 @@
 
 
                 <li>
-                    <a href="<?php echo base_url();?>auth">
+                    <a href="<?php echo base_url();?>auth/logout">
                         <i class="fa fa-sign-out"></i> Log out
                     </a>
                 </li>
