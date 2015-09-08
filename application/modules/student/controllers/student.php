@@ -10,8 +10,8 @@ class Student extends MY_Controller {
 		// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";exit;
 		$user_id = $this->session->userdata('userid');
 		$student_data = $this->student_model->get_student_data($user_id);
-		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
 		$data['student_data'] = $student_data[0];
+		echo "<pre>";print_r($data['student_data']);echo "</pre>";exit;
 		$this ->load ->view('student_template',$data);
 	}
 
