@@ -7,10 +7,19 @@ class Student extends MY_Controller {
 
 	public function index()
 	{
-		$this ->load ->view('student_template');
+		// echo "<pre>";print_r($this->session->all_userdata());echo "</pre>";exit;
+		$user_id = $this->session->userdata('userid');
+		$student_data = $this->student_model->get_student_data($user_id);
+		$data['student_data'] = $student_data;
+		// echo "<pre>";print_r($data['student_data']);echo "</pre>";exit;
+		$this ->load ->view('student_template',$data);
 	}
 
 	public function student_inbox(){
+		$user_id = $this->session->userdata('userid');
+		$student_data = $this->student_model->get_student_data($user_id);
+		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
+		$data['student_data'] = $student_data[0];
 		$unread_messages = $this->student_model->get_unread_messages_count(1);
 		$messages = $this->student_model->get_messages(1);
 		$unread_messages = $unread_messages[0]['unread_count'];
@@ -23,6 +32,10 @@ class Student extends MY_Controller {
 	}
 
 	public function student_msg_details($msg_id){
+		$user_id = $this->session->userdata('userid');
+		$student_data = $this->student_model->get_student_data($user_id);
+		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
+		$data['student_data'] = $student_data[0];
 		$query = "UPDATE messages SET status=2 WHERE id=$msg_id";
 		$set_as_read = $this->db->query($query);
 
@@ -37,6 +50,10 @@ class Student extends MY_Controller {
 	}
 
 	public function student_compose_messsage($msg_id = NULL){
+		$user_id = $this->session->userdata('userid');
+		$student_data = $this->student_model->get_student_data($user_id);
+		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
+		$data['student_data'] = $student_data[0];
 		$unread_messages = $this->student_model->get_unread_messages_count(1);
 		$data['content'] = "student/student_compose";
 		$students = $this->student_model ->get_students();
@@ -64,6 +81,10 @@ class Student extends MY_Controller {
 	}
 
 	public function reply_message($reply_id = NULL){
+		$user_id = $this->session->userdata('userid');
+		$student_data = $this->student_model->get_student_data($user_id);
+		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
+		$data['student_data'] = $student_data[0];
 		// echo $reply_id;exit;
 		// echo "SUCCESS";exit;
 		$var = $this->input->post();

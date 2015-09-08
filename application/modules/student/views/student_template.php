@@ -47,23 +47,14 @@
                 <div class="navbar-header">
                     <a href="index.html" class="navbar-brand"><span class="navbar-logo"></span> UMS</a>
                     <button type="button" class="navbar-toggle" data-click="sidebar-toggled">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <i class="fa fa-bars"></i>
                     </button>
                 </div>
                 <!-- end mobile sidebar expand / collapse button -->
                 
                 <!-- begin header navigation right -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <form class="navbar-form full-width">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter keyword" />
-                                <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                            </div>
-                        </form>
-                    </li>
+
                     <li class="dropdown">
                         <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
                             <i class="fa fa-bell-o"></i>
@@ -75,7 +66,7 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading">Richard Karsan</h6>
+                                        <h6 class="media-heading"><?php echo ucfirst($student_data[0]['first_name']).' '.ucfirst($student_data[0]['last_name']); ?></h6>
                                         <div class="text-muted f-s-11">3 minutes ago</div>
                                     </div>
                                 </a>
@@ -126,7 +117,7 @@
                     <li class="dropdown navbar-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?php echo base_url().'assets/images/developers/richard.jpg'; ?>" alt="" /> 
-                            <span class="hidden-xs">Richard Karsan</span> <b class="caret"></b>
+                            <span class="hidden-xs"><?php echo ucfirst($student_data[0]['first_name']).' '.ucfirst($student_data[0]['last_name']); ?></span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu animated fadeInLeft">
                             <li class="arrow"></li>
