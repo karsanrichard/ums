@@ -21,7 +21,7 @@ class MY_Controller extends MX_Controller
 		$key = $this -> encrypt -> get_key();
 		$encrypted_data = $key . $data;
 		$data = md5($encrypted_data);
-		// echo $data;
+		echo $data;
 		return $data;
 	}
 
@@ -70,15 +70,7 @@ class MY_Controller extends MX_Controller
 		return $hashed_values;
 	}
 
-	public function hach()
-	{
-		$hash = $this->_hashID(1);
-		echo $hash.'<br />';
-		$reverse = $this->hash_reverse('TkOSfsKFSs&');
-
-
-
-	}
+	
 	public function _hashID($data)
 	{
 		// echo($data);die();
@@ -123,6 +115,12 @@ class MY_Controller extends MX_Controller
 			}
 		}
 		return $parameter;
+	}
+
+	function get_user_module()
+	{
+		return $this->session->userdata('user_table');
+
 	}
     
 }

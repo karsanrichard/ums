@@ -26,7 +26,7 @@
                         <a href="<?php echo base_url();?>lecturer/lecturer_units"><i class="fa fa-book"></i> <span class="nav-label">My Units</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo base_url();?>messages/read"><i class="fa fa-twitch"></i> <span class="nav-label">Messages</span><span class="label label-info pull-right">62</span></a>
+                        <a href="<?php echo base_url();?>messages"><i class="fa fa-twitch"></i> <span class="nav-label">Messages</span><span class="label label-info pull-right">62</span></a>
                     </li>
                                        
                 </ul>
