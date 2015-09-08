@@ -66,7 +66,7 @@
                                 <a href="javascript:;">
                                     <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
                                     <div class="media-body">
-                                        <h6 class="media-heading"><?php echo ucfirst($student_data['first_name']).' '.ucfirst($student_data['last_name']); ?></h6>
+                                        <h6 class="media-heading"><?php echo ucfirst($student_data[0]['first_name']).' '.ucfirst($student_data[0]['last_name']); ?></h6>
                                         <div class="text-muted f-s-11">3 minutes ago</div>
                                     </div>
                                 </a>
@@ -117,7 +117,7 @@
                     <li class="dropdown navbar-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="<?php echo base_url().'assets/images/developers/richard.jpg'; ?>" alt="" /> 
-                            <span class="hidden-xs"><?php echo ucfirst($student_data['first_name']).' '.ucfirst($student_data['last_name']); ?></span> <b class="caret"></b>
+                            <span class="hidden-xs"><?php echo ucfirst($student_data[0]['first_name']).' '.ucfirst($student_data[0]['last_name']); ?></span> <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu animated fadeInLeft">
                             <li class="arrow"></li>
