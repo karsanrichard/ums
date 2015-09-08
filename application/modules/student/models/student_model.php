@@ -59,7 +59,11 @@ class Student_model extends MY_Model
 
 	}
 
-
+	public function get_student_data($user_id){
+		$query = "SELECT * FROM students WHERE user_id = $user_id";
+		$result = $this->db->query($query)->result_array();
+		return $result;
+	}
 
 }
 //end of file

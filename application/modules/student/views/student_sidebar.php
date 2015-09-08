@@ -8,7 +8,7 @@
                     <a href="javascript:;"><img src="<?php echo base_url().'assets/images/developers/richard.jpg'; ?>" alt="" /></a>
                 </div>
                 <div class="info">
-                    Richard Karsan
+                    <?php echo ucfirst($student_data['first_name']).' '.ucfirst($student_data['last_name']); ?>
                     <small>Student</small>
                 </div>
             </li>
