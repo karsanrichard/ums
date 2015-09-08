@@ -19,7 +19,7 @@ class Student extends MY_Controller {
 		$user_id = $this->session->userdata('userid');
 		$student_data = $this->student_model->get_student_data($user_id);
 		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
-		$data['student_data'] = $student_data[0];
+		$data['student_data'] = $student_data;
 		$unread_messages = $this->student_model->get_unread_messages_count(1);
 		$messages = $this->student_model->get_messages(1);
 		$unread_messages = $unread_messages[0]['unread_count'];
@@ -35,7 +35,7 @@ class Student extends MY_Controller {
 		$user_id = $this->session->userdata('userid');
 		$student_data = $this->student_model->get_student_data($user_id);
 		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
-		$data['student_data'] = $student_data[0];
+		$data['student_data'] = $student_data;
 		$query = "UPDATE messages SET status=2 WHERE id=$msg_id";
 		$set_as_read = $this->db->query($query);
 
@@ -53,7 +53,7 @@ class Student extends MY_Controller {
 		$user_id = $this->session->userdata('userid');
 		$student_data = $this->student_model->get_student_data($user_id);
 		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
-		$data['student_data'] = $student_data[0];
+		$data['student_data'] = $student_data;
 		$unread_messages = $this->student_model->get_unread_messages_count(1);
 		$data['content'] = "student/student_compose";
 		$students = $this->student_model ->get_students();
@@ -84,7 +84,7 @@ class Student extends MY_Controller {
 		$user_id = $this->session->userdata('userid');
 		$student_data = $this->student_model->get_student_data($user_id);
 		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
-		$data['student_data'] = $student_data[0];
+		$data['student_data'] = $student_data;
 		// echo $reply_id;exit;
 		// echo "SUCCESS";exit;
 		$var = $this->input->post();
