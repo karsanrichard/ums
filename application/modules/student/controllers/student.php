@@ -100,8 +100,10 @@ class Student extends MY_Controller {
 			'message' => $msg_body, 
 			'message' => $msg_body
 			);
+		array_push($msg_array, $msg_arr);
+		$result = $this->db->insert_batch('messages',$msg_array);
 		// $msg_subject = $_POST['msg_subject'];
 
-		echo $msg_body;
+		echo $result;
 	}
 }
