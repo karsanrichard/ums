@@ -8,7 +8,7 @@
                             <div class="space-25"></div>
                             <h5>Folders</h5>
                             <ul class="folder-list m-b-md" style="padding: 0">
-                                <li><a href="mailbox.html"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning pull-right">16</span> </a></li>
+                                <li><a href="mailbox.html"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning pull-right"><?php echo $unread_messages[0]['unread_count'];?></span> </a></li>
                                 <li><a href="mailbox.html"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
                                 <li><a href="mailbox.html"> <i class="fa fa-certificate"></i> Important</a></li>
                                 <li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger pull-right">2</span></a></li>
