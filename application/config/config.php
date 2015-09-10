@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/ums/';
+$config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/ums';
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ $config['index_page'] = '';
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']	= 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
@@ -128,7 +128,7 @@ $config['subclass_prefix'] = 'MY_';
 | DO NOT CHANGE THIS UNLESS YOU FULLY UNDERSTAND THE REPERCUSSIONS!!
 |
 */
-$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-&';
+$config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 
 
 /*
@@ -226,7 +226,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'asddhjdshjesherh';
+$config['encryption_key'] = 'f3a27e5e622f3f1abb0ee3b25e3ab628';
 
 /*
 |--------------------------------------------------------------------------
