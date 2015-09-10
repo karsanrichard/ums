@@ -1,0 +1,1 @@
+ALTER TABLE  `groups` ADD  `managed_by` INT NOT NULL ;

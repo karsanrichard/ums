@@ -39,6 +39,12 @@
                     <!-- <li><a href="email_detail.html">Detail</a></li> -->
                 </ul>
             </li>
+            <li>
+                <a href="">
+                    <i class="fa fa-laptop"></i>
+                    <span>Groups</span>
+                </a>
+            </li>
             <!--
             <li class="has-sub">
                 <a href="javascript:;">
