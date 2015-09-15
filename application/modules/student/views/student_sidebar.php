@@ -40,8 +40,8 @@
                 </ul>
             </li>
             <li>
-                <a href="">
-                    <i class="fa fa-laptop"></i>
+                <a href="<?php echo base_url().'groups'; ?>">
+                    <i class="fa fa-users"></i>
                     <span>Groups</span>
                 </a>
             </li>

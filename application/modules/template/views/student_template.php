@@ -30,6 +30,8 @@
     
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="<?php echo base_url().'assets/student/plugins/pace/pace.min.js';?>"></script>
+    <link href="<?php echo base_url().'assets/student/plugins/isotope/isotope.css';?>" rel="stylesheet" />
+    <link href="<?php echo base_url().'assets/student/plugins/lightbox/css/lightbox.css';?>" rel="stylesheet" />
     <!-- ================== END BASE JS ================== -->
 </head>
 <body>
@@ -82,7 +84,7 @@
                             </li>
                             <li class="media">
                                 <a href="javascript:;">
-                                    <div class="media-left"><img src="assets/img/user-1.jpg" class="media-object" alt="" /></div>
+                                    <div class="media-left"><img src="<?php echo base_url().'assets/images/developers/richard.jpg'; ?>" class="media-object" alt="" /></div>
                                     <div class="media-body">
                                         <h6 class="media-heading">John Smith</h6>
                                         <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
@@ -92,7 +94,7 @@
                             </li>
                             <li class="media">
                                 <a href="javascript:;">
-                                    <div class="media-left"><img src="assets/img/user-2.jpg" class="media-object" alt="" /></div>
+                                    <div class="media-left"><img src="<?php echo base_url().'assets/images/developers/richard.jpg'; ?>" class="media-object" alt="" /></div>
                                     <div class="media-body">
                                         <h6 class="media-heading">Olivia</h6>
                                         <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
@@ -184,6 +186,9 @@
     <script src="<?php echo base_url().'assets/student/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js';?>"></script>
     <script src="<?php echo base_url().'assets/student/plugins/gritter/js/jquery.gritter.js';?>"></script>
     <script src="<?php echo base_url().'assets/student/js/dashboard-v2.min.js';?>"></script>
+    <script src="<?php echo base_url().'assets/student/plugins/isotope/jquery.isotope.min.js';?>"></script>
+    <script src="<?php echo base_url().'assets/student/plugins/lightbox/js/lightbox-2.6.min.js';?>"></script>
+    <script src="<?php echo base_url().'assets/student/js/gallery.demo.min.js';?>"></script>
     <script src="<?php echo base_url().'assets/student/js/apps.min.js';?>"></script>
 
     <!-- ================== END PAGE LEVEL JS ================== -->
@@ -192,6 +197,7 @@
         $(document).ready(function() {
             App.init();
             DashboardV2.init();
+            Gallery.init();
         });
     </script>
 </body>

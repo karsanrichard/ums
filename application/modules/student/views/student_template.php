@@ -30,6 +30,9 @@
     
     <!-- ================== BEGIN BASE JS ================== -->
     <script src="<?php echo base_url().'assets/student/plugins/pace/pace.min.js';?>"></script>
+    <link href="<?php echo base_url().'assets/student/plugins/isotope/isotope.css';?>" rel="stylesheet" />
+    <link href="<?php echo base_url().'assets/student/plugins/lightbox/css/lightbox.css';?>" rel="stylesheet" />
+    <script src="<?php echo base_url().'assets/student/js/apps.min.js';?>"></script>
     <!-- ================== END BASE JS ================== -->
 </head>
 <body>
@@ -137,7 +140,7 @@
         <!-- end #header -->
         
         <!-- begin #sidebar -->
-        <?php $this->load->view("student_sidebar"); ?>
+        <?php $this->load->view("student/student_sidebar"); ?>
         
         <!-- end #sidebar -->
         
@@ -175,14 +178,18 @@
     <script src="<?php echo base_url().'assets/student/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js';?>"></script>
     <script src="<?php echo base_url().'assets/student/plugins/gritter/js/jquery.gritter.js';?>"></script>
     <script src="<?php echo base_url().'assets/student/js/dashboard-v2.min.js';?>"></script>
-    <script src="<?php echo base_url().'assets/student/js/apps.min.js';?>"></script>
+    <script src="<?php echo base_url().'assets/student/plugins/isotope/jquery.isotope.min.js';?>"></script>
+    <script src="<?php echo base_url().'assets/student/plugins/lightbox/js/lightbox-2.6.min.js';?>"></script>
+    <script src="<?php echo base_url().'assets/student/js/gallery.demo.min.js';?>"></script>
+    
 
     <!-- ================== END PAGE LEVEL JS ================== -->
     
     <script>
         $(document).ready(function() {
             App.init();
-            DashboardV2.init();
+            // DashboardV2.init();
+            Gallery.init();
         });
     </script>
 </body>
