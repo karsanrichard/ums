@@ -85,8 +85,6 @@
 			if ($upload) {
 				redirect(base_url()."lecturer/lecturer_units/".$unit_id);
 			} 
-			
-			
 		}
 	}
 ?>

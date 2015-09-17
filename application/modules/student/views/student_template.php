@@ -140,7 +140,7 @@
         <!-- end #header -->
         
         <!-- begin #sidebar -->
-        <?php $this->load->view("student/student_sidebar"); ?>
+        <?php $this->load->view('student/student_sidebar');?>
         
         <!-- end #sidebar -->
         

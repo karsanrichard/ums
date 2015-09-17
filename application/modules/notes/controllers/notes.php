@@ -148,5 +148,55 @@ class Notes extends MY_Controller
 		
 		return $this->topics_dropdown;
 	}
+
+	function upload_group_notes($courseID)
+	{
+		$topic = $this->input->post('topic');
+		$files = $_FILES['upload'];
+
+		$allowed = array('docx','doc','pdf','xlsx','jpg','jpeg');
+		$insert_array = array();
+		$count = 0;
+		$move_to = '././notes/students_upload/';
+		$new_path = '';
+
+		if($files['size'][0]>0) {
+			// echo "<pre>";print_r($_FILES);
+			foreach ($files['name'] as $key => $value) {
+				$file_ext = explode(".", $value);
+            	$file_ext = end($file_ext);
+
+            	if(in_array($file_ext, $allowed)){
+            		$accepted = $key;
+            		$accepted_path = $files['name'][$accepted];
+            		$temp_path = $files['tmp_name'][$accepted];
+            		move_uploaded_file($temp_path, $move_to.$accepted_path);
+            		$path = $files['name'][$accepted];
+            		$path = base_url().'notes/students_upload/'.$path;
+            		$insert_array[$count] = array(
+            								'group_id' => $courseID,
+            								'topic' => $topic,
+            								'path' => $path
+            								);
+            	}else{
+            		$denied = $key;
+            	}
+            	$count++;
+			}
+		} else {
+			$new_path = $this->input->post('url');
+			$insert_array[$count] = array(
+            								'group_id' => $courseID,
+            								'topic' => $topic,
+            								'path' => $new_path
+            								);
+
+		}
+		$insert = $this->notes_model->student_upload_notes($insert_array);
+		
+		
+		return $insert;
+			
+	}
 }
 ?>

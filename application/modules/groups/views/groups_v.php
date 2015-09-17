@@ -11,17 +11,12 @@
                         Show All
                     </a>
                     <a href="#gallery-group-1" class="btn btn-default btn-xs" data-option-value=".gallery-group-1">
-                        Gallery Group 1
+                        Managed Groups
                     </a>
                     <a href="#gallery-group-2" class="btn btn-default btn-xs" data-option-value=".gallery-group-2">
-                        Gallery Group 2
+                        Belonged Groups
                     </a>
-                    <a href="#gallery-group-3" class="btn btn-default btn-xs" data-option-value=".gallery-group-3">
-                        Gallery Group 3
-                    </a>
-                    <a href="#gallery-group-4" class="btn btn-default btn-xs" data-option-value=".gallery-group-4">
-                        Gallery Group 4
-                    </a>
+                    
                 </span>
             </div>
             <div id="gallery" class="gallery">

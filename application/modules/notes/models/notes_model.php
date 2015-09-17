@@ -24,6 +24,14 @@ class Notes_model extends MY_Model
 		return $result;
 	}
 
+	//Function to upload notes for the groups by the student group leaders
+	function student_upload_notes($insert_array)
+	{
+		$result = $this->db->insert_batch('group_notes', $insert_array);
+
+		return $result;
+	}
+
 	function get_notes($unit_id,$lec_id)
 	{
 		$sql = "SELECT
