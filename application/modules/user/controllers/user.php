@@ -26,7 +26,9 @@ class User extends MY_Controller
 	{
 		// $identifier = $this->RandomLib->generateString(128);
 		// echo "<pre>";print_r($this->input->post());echo "</pre>";exit;
-		$password = md5($this->input->post('password'));
+		// $password = md5($this->input->post('password'));
+		$pwd = $this->input->post('password');
+		$password = $this->encrypt($pwd);
 
 		$inserted = $this->m_user->add_user([
 			'email' => $this->input->post('email'),
@@ -40,7 +42,7 @@ class User extends MY_Controller
 			'last_name' => $this->input->post('lname'),
 			'other_name' => $this->input->post('onames'),
 			'course_id' => $this->input->post('course_selection'),
-			'email' => $this->input->post('email_address'),
+			'email' => $this->input->post('email'),
 			'user_id' => mysql_insert_id()
 		]);
 		redirect('auth/login_message/1/registration');

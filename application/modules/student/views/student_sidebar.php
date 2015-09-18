@@ -39,12 +39,20 @@
                     <!-- <li><a href="email_detail.html">Detail</a></li> -->
                 </ul>
             </li>
-            <li>
-                <a href="<?php echo base_url().'groups'; ?>">
-                    <i class="fa fa-users"></i>
-                    <span>Groups</span>
+            <li class="has-sub">
+                <a href="javascript:;">
+                    <span class="badge pull-right">10</span>
+                    <i class="fa fa-inbox"></i> 
+                    <span>Group Management</span>
                 </a>
+                <ul class="sub-menu">
+                    <li><a href="<?php echo base_url().'student/groups'; ?>">Your Groups</a></li>
+                    <li><a href="<?php echo base_url().'groups'; ?>">Your Groups Mine</a></li>
+                    <li><a href="<?php echo base_url().'student/group_create'; ?>">Create Group</a></li>
+                    <!-- <li><a href="email_detail.html">Detail</a></li> -->
+                </ul>
             </li>
+
             <!--
             <li class="has-sub">
                 <a href="javascript:;">
