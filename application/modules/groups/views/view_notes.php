@@ -1,8 +1,17 @@
 <style type="text/css">
     label {
-    font-weight: 500;
-    font-size: initial;
-}
+        font-weight: 500;
+        font-size: initial;
+    }
+    .note{
+        margin-right: 2em;
+        display: inline-block;
+    }
+    .notes_holder {
+        width:100px;
+        height:100px;
+        padding: 0.5em;
+    }
 </style>
 <div id="content" class="content">
 	<!-- begin breadcrumb -->

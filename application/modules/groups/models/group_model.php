@@ -29,5 +29,12 @@ class Group_model extends MY_Model
 	
 		return $result->result_array();
 	}
+
+	function get_group_topics($courseID)
+	{
+		$result = $this->db->query("SELECT DISTINCT `topic` FROM `group_notes` WHERE `group_id` = '$courseID'");
+
+		return $result->result_array();
+	}
 }
 ?>

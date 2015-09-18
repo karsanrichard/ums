@@ -198,5 +198,11 @@ class Notes extends MY_Controller
 		return $insert;
 			
 	}
+
+	function allowed_notes_type()
+	{
+		$allowed = array('docx','doc','pdf','xlsx','jpg','jpeg');
+		return $allowed;
+	}
 }
 ?>

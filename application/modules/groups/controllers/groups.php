@@ -77,26 +77,33 @@ class Groups extends MY_Controller
 		$list_notes = '';
 		$notes = $this->group_model->get_group_data($courseID);
 		$group = $this->group_model->get_group($courseID);
+		$topics = $this->group_model->get_group_topics($courseID);
 		// echo "<pre>";print_r($notes);die();
 		// echo $this->session->userdata('userid');die();
 		if ($notes) {
-			foreach ($notes as $key => $value) {
+			foreach ($topics as $k => $v) {
 				$list_notes .= '<li>
                                 <div class="result-info">
-                                    <h4 class="title"><a href="javascript:;">'.$value['topic'].'</a></h4>
+                                    <h4 class="title"><a href="javascript:;">'.$v['topic'].'</a></h4>
                                     <p class="location">United State, BY 10089</p>
-                                    <p class="desc">
-                                        <img src="http://www.hdwallpapersimages.com/wp-content/uploads/2014/01/Winter-Tiger-Wild-Cat-Images.jpg" />
-                                    </p>
-                                    <div class="btn-row">
-                                        <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Analytics"><i class="fa fa-fw fa-bar-chart-o"></i></a>
-                                        <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Tasks"><i class="fa fa-fw fa-tasks"></i></a>
-                                        <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Configuration"><i class="fa fa-fw fa-cog"></i></a>
-                                        <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Performance"><i class="fa fa-fw fa-tachometer"></i></a>
-                                        <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Users"><i class="fa fa-fw fa-user"></i></a>
-                                    </div>
-                                </div>';
+                                    <p class="desc" style="max-height: none;">';
+				foreach ($notes as $key => $value) {
+					if ($v['topic'] == $value['topic']) {
+						$notes_holder = $this->notes_holder($value['path']);
+				    	$list_notes .= '<div class="note note-success"><label>'.$this->note_name($value['path']).'</label><a href="'.$value['path'].'" target="blank"><img class="notes_holder" src="'.$notes_holder.'" /></a></div>';
+					}
+				}
+			$list_notes .= '</p>
+                            <div class="btn-row">
+                                <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Analytics"><i class="fa fa-fw fa-bar-chart-o"></i></a>
+                                <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Tasks"><i class="fa fa-fw fa-tasks"></i></a>
+                                <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Configuration"><i class="fa fa-fw fa-cog"></i></a>
+                                <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Performance"><i class="fa fa-fw fa-tachometer"></i></a>
+                                <a href="javascript:;" data-toggle="tooltip" data-container="body" data-title="Users"><i class="fa fa-fw fa-user"></i></a>
+                            </div>
+                        </div>';
 			}
+			
 
 		}else {
 			$list_notes .= '<li>
@@ -154,6 +161,36 @@ class Groups extends MY_Controller
 				redirect($url);
 			}
 		}
+
+	function notes_holder($path)
+	{
+		$ext = end(explode('.',$path));
+		// echo "<pre>";print_r($this->notes->allowed_notes_type());die();
+		if(in_array($ext, $this->notes->allowed_notes_type()))
+		{
+
+			if ($ext == 'docx' || $ext == 'doc') {
+				$image_holder = base_url().'assets/placeholders/images-ms-word.png';
+			} else if ($ext == 'xlsx') {
+				$image_holder = base_url().'assets/placeholders/images-ms-excel.png';
+			}else if ($ext == 'pdf') {
+				$image_holder = base_url().'assets/placeholders/logo-adobe-pdf.jpg';
+			}else if ($ext == 'jpg' || $ext == 'jpeg') {
+				$image_holder = base_url().'assets/placeholders/imge-holder.png';
+			}
+		} else {
+			$image_holder = base_url().'assets/placeholders/images-web.png';
+		}
+
+		return $image_holder;
+	}
+
+	function note_name($path)
+	{
+		$file_name = end(explode('/', $path));
+		$name = explode('.', $file_name);
+		return $name[0];
+	}
 
 }
 ?>
