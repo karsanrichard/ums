@@ -6,7 +6,7 @@ class Student_model extends MY_Model
 	}
 
 	public function get_messages($user_id = NULL){
-		$query = "CALL get_messages($user_id)";
+		$query = "SELECT * FROM messages WHERE recepient_id = $user_id";
 
 		$result = $this->db->query($query);
 		
@@ -33,7 +33,7 @@ class Student_model extends MY_Model
 		    students s,
 		    users u
 		WHERE
-		    m.id = $msg_id and m.recepient_id = u.id AND s.user_id = u.id
+		    m.id = $msg_id and m.sender_id = u.id AND s.user_id = u.id
 		";
 
 		$result = $this->db->query($query);
@@ -43,6 +43,15 @@ class Student_model extends MY_Model
 
 	public function get_students(){
 		$query = "SELECT * FROM students";
+
+		$result = $this->db->query($query);
+		
+		return $result->result_array();
+
+	}
+
+	public function get_students_for_msg($user_id){
+		$query = "SELECT * FROM ums.students WHERE user_id NOT IN($user_id)";
 
 		$result = $this->db->query($query);
 		

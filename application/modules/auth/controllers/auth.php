@@ -24,7 +24,7 @@ class Auth extends MY_Controller
 		$password = $this->input->post('password');
 
 		$hashed = $this->encrypt($password);
-		// echo $hashed;
+		// echo $hashed;exit;
 		$authentication = $this->auth_m->getUser($email, $hashed);
 		// echo "<pre>";print_r($authentication);die();
 		if($authentication['auth'] == TRUE)
@@ -64,8 +64,6 @@ class Auth extends MY_Controller
 		// $this->logout();
 		if (isset($message)&&$type == 'error') {
 			$info = '</br><b><i class = "fa fa-exclamation-circle"></i> Login Error! Wrong Username or Password</b></br>';
-		}elseif (isset($message)&&$type == 'registration') {
-			$info = '</br><b><i class="fa fa-info-circle"></i> You have been successfully registered.<i class="fa fa-info-circle"></i></br>Proceed to Login </b></br>';
 		}
 
 		$data['message'] = $info;

@@ -1,4 +1,3 @@
-    <?php $msg_url = (isset($replying))? base_url()."student/reply_message/".$msg_id : base_url()."student/reply_message/"; ?>
     <div id="content" class="content content-full-width">
         <!-- begin vertical-box -->
         <div class="vertical-box">
@@ -100,44 +99,3 @@
             </div>
         </div>
     </div>
-
-    <script>
-$(document).ready(function(){
-    var reply_url = '<?php echo $msg_url; ?>';
-    // alert(reply_url);return;
-    $(".send_msg").click(function(){
-    var message_body = $("#message_body").val();
-    var msg_subject = $("#msg_subject").val();
-    var recepient = $("#recepient").val();
-
-    // alert(msg_subject);return;
-    if ($("#message_body").val() == '' ) {
-        $(".send_msg").html('<i class="fa fa-exclamation"></i> Send Message ');
-        $(".empty_warning").html('<i class="fa fa-exclamation"></i> Kindly enter a message to send ');
-
-        // alert("Kindly enter a message to send")
-    }else{
-    // alert(message_body);return;
-        $.ajax({
-        type: "POST",
-        url:reply_url,
-        data:{
-            message_body:message_body,
-            msg_subject:msg_subject,
-            recepient:recepient
-        },
-        beforeSend : function(){
-            $(".send_msg").html('<i class="fa fa-cog fa-spin"></i> Sending Message ');
-        },
-        success: function(msg){
-            console.log(msg);
-            // alert(msg);return;
-            $(".send_msg").html('<i class="fa fa-check"></i> Message Sent');
-            $("#message_body").val('');
-            $("#msg_subject").val('');
-        }
-    });//end of ajax
-    }//end of else
-    });//end of send sms .click
-});
-</script>
