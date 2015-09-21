@@ -64,9 +64,10 @@ class Groups extends MY_Controller
 			Right 1 -> Read and Write
 		*/
 		$courseID = $this->hash_reverse($courseID);
-		$rights = $this->hash_reverse($courseID);
+		$rights = $this->hash_reverse($rights);
 		$data['student_data'] = $this->student_model->get_student_data($this->session->userdata('userid'));
 		$data['group_data'] = $this->group_notes($courseID,$rights);
+		$data['rights'] = $rights;
 		$data['content'] = 'view_notes';
 		// echo "<pre>";print_r($data);die();
 		$this->load->view('student/student_template', $data);

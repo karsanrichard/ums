@@ -114,22 +114,20 @@ $(document).ready(function(){
             $('#link').attr('required','true');
         };
     });
-    //get the input and UL list
-    var input = document.getElementById('upload');
-    // var list = document.getElementById('fileList');
-
-    // //empty list for now...
-    // while (list.hasChildNodes()) {
-    //     list.removeChild(ul.firstChild);
-    // }
-
-    //for every file...
-    for (var x = 0; x < input.files.length; x++) {
-        //add to list
-        var li = document.createElement('li');
-        li.innerHTML = 'File ' + (x + 1) + ':  ' + input.files[x].name;
-        list.append(li);
-    }
+    rights = <?php echo $rights;?>;
+    
+    //get the input and UL list when it is the group leader logged in.
+    if (rights == 1) {
+        var input = document.getElementById('upload');
+        
+        //for every file...
+        for (var x = 0; x < input.files.length; x++) {
+            //add to list
+            var li = document.createElement('li');
+            li.innerHTML = 'File ' + (x + 1) + ':  ' + input.files[x].name;
+            list.append(li);
+        }
+    };
 
 });
 </script>
