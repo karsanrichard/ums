@@ -8,10 +8,10 @@
             <div id="options" class="m-b-10">
                 <span class="gallery-option-set" id="filter" data-option-key="filter">
                     <a href="#show-all" class="btn btn-default btn-xs active" data-option-value="*">
-                        Show All
+                        Show All Groups
                     </a>
                     <a href="#gallery-group-1" class="btn btn-default btn-xs" data-option-value=".gallery-group-1">
-                        Managed Groups
+                        My Managed Groups
                     </a>
                     <a href="#gallery-group-2" class="btn btn-default btn-xs" data-option-value=".gallery-group-2">
                         Belonged Groups

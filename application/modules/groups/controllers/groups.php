@@ -17,15 +17,16 @@ class Groups extends MY_Controller
 	{
 		$user_id = $this->session->userdata('userid');
 		$data['student_data'] = $this->student_model->get_student_data($user_id);
-		$data['groups'] = $this->view_group_notes();
+		$data['groups'] = $this->view_groups();
 		$data['content'] = 'groups_v';
 		$this->load->view('student/student_template',$data);
 	}
 
-	function view_group_notes()
+	function view_groups()
 	{
 		$groups = '';
 		$g_belong = $this->group_model->group_belong($this->session->userdata('userid'));
+		// echo "<pre>";print_r($g_belong);die();
 		if ($g_belong) {
 			foreach ($g_belong as $key => $value) {
 			if ($value['managed_by'] == $value['user_id']) {

@@ -25,7 +25,7 @@ class Group_model extends MY_Model
 
 	function get_group_data($courseID)
 	{
-		$result = $this->db->query("SELECT * FROM `groups` `g` JOIN `student_groups` `sg` ON `g`.`group_id` = `sg`.`group_id` JOIN `group_notes` `gn` ON `g`.`group_id` = `gn`.`group_id` WHERE `g`.`group_id` = '$courseID'");
+		$result = $this->db->query("SELECT `g`.`group_id`, `g`.`group_name`, `g`.`managed_by`, `sg`.`user_id`, `sg`.`user_id`, `gn`.`group_notes_id`, `gn`.`topic`, `gn`.`path`, `gn`.`status` FROM `groups` `g` JOIN `student_groups` `sg` ON `g`.`group_id` = `sg`.`group_id` JOIN `group_notes` `gn` ON `g`.`group_id` = `gn`.`group_id` WHERE `g`.`group_id` = '$courseID' GROUP BY `gn`.`group_notes_id`");
 	
 		return $result->result_array();
 	}
