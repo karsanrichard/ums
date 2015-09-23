@@ -47,11 +47,18 @@
 
 $active_group = 'default';
 $active_record = TRUE;
-
+/*
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'ums';
+*/
+
+$db['default']['hostname'] = '192.168.133.22';
+$db['default']['username'] = 'root';
+$db['default']['password'] = 'hPlaB';
+$db['default']['database'] = 'ums';
+
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
