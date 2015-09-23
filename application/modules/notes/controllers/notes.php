@@ -10,6 +10,7 @@ class Notes extends MY_Controller
 	{
 		parent::__construct();
 		$this->load->model('notes_model');
+		// $this->check_login();
 	}
 
 	function drop_notes_type()

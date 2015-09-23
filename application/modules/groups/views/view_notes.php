@@ -119,14 +119,15 @@ $(document).ready(function(){
     //get the input and UL list when it is the group leader logged in.
     if (rights == 1) {
         var input = document.getElementById('upload');
-        
-        //for every file...
-        for (var x = 0; x < input.files.length; x++) {
+        if (input !='') {
+            for (var x = 0; x < input.files.length; x++) {
             //add to list
             var li = document.createElement('li');
             li.innerHTML = 'File ' + (x + 1) + ':  ' + input.files[x].name;
             list.append(li);
         }
+    };
+        
     };
 
 });

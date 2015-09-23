@@ -9,7 +9,6 @@ class Messages extends MY_Controller
 	{
 		parent:: __construct();
 		$this->load->model('messages_model');
-
 	}
 
 	function index(){

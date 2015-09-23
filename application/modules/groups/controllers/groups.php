@@ -11,6 +11,7 @@ class Groups extends MY_Controller
 		$this->load->model('group_model');
 		$this->load->model('student/student_model');
 		$this->load->module('notes');
+		$this->check_login();
 	}
 
 	function index()
@@ -25,23 +26,60 @@ class Groups extends MY_Controller
 	function view_groups()
 	{
 		$groups = '';
+		$user_id = $this->session->userdata('userid');
 		$g_belong = $this->group_model->group_belong($this->session->userdata('userid'));
-		// echo "<pre>";print_r($g_belong);die();
-		if ($g_belong) {
+		$all_groups = $this->group_model->get_all_groups();
+
+		// echo "<pre>";print_r($all_groups);die();
+		$student_data = $this->student_model->get_student_data($user_id);
+		// echo "<pre>";print_r($all_groups);die();
+		if ($all_groups) {
+			foreach ($all_groups as $key => $values) {
+				if ($values['managed_by'] == $user_id) {
+					$groups .= '<div class="image gallery-group-1">
+		                    <div class="image-info">
+			                        <a href="'.base_url().'groups/group_auth/'.$this->_hashID($values['group_id']).'/'.$this->_hashID(1).'"><h5 class="title"> '.$values['group_name'].'</h5></a>
+			                        <div class="desc">
+			                            <small>by</small> <a href="javascript:;">'.$values['first_name'].' '.$values['last_name'].' '.$values['other_name'].'</a>
+			                        </div>
+			                </div>
+		                </div>';
+				}else{
+					$groups .= '<div class="image gallery-group-2">
+		                    <div class="image-info">
+			                        <a href="'.base_url().'groups/group_auth/'.$this->_hashID($values['group_id']).'/'.$this->_hashID(1).'"><h5 class="title"> '.$values['group_name'].'</h5></a>
+			                        <div class="desc">
+			                            <small>by</small> <a href="javascript:;">'.$values['first_name'].' '.$values['last_name'].' '.$values['other_name'].'</a>
+			                        </div>
+			                </div>
+		                </div>';
+				}
+			}
+		}//if for all groups
+		else{
+				// $groups = '<center><h5 class="title">You are not yet registered in any group</h5><h6>Please Contact the group Module leader</h6></center>';
+				$groups .='<div class="image gallery-group-1">
+		                    <div class="image-info">
+			                        <center><h5 class="title">You are not yet registered in any group</h5><h6>Please Contact the group Module leader</h6></center>
+			                </div>
+		                  </div>';
+			}
+
+		/*if ($g_belong) {
 			foreach ($g_belong as $key => $value) {
 			if ($value['managed_by'] == $value['user_id']) {
-				$groups .= '<div class="image gallery-group-1">
+				$groups .= '<div class="image gallery-group-2">
 		                    <div class="image-info">
-			                        <a href="'.base_url().'groups/viewNotes/'.$this->_hashID($value['group_id']).'/'.$this->_hashID(1).'"><h5 class="title"> '.$value['group_name'].'</h5></a>
+			                        <a href="'.base_url().'groups/group_auth/'.$this->_hashID($value['group_id']).'/'.$this->_hashID(1).'"><h5 class="title"> '.$value['group_name'].'</h5></a>
 			                        <div class="desc">
-			                            <small>by</small> <a href="javascript:;">'.$value['group_name'].'</a>
+			                            <small>by</small> <a href="javascript:;">'.$student_data[0]['first_name'].' '.$student_data[0]['last_name'].' '.$student_data[0]['other_name'].'</a>
 			                        </div>
 			                </div>
 		                </div>';
 			} else {
-				$groups .= '<div class="image gallery-group-2">
+				$groups .= '<div class="image gallery-group-3">
 		                    <div class="image-info">
-			                        <a href="'.base_url().'groups/viewNotes/'.$this->_hashID($value['group_id']).'/'.$this->_hashID(0).'"><h5 class="title"> '.$value['group_name'].'</h5></a>
+			                        <a href="'.base_url().'groups/group_auth/'.$this->_hashID($value['group_id']).'/'.$this->_hashID(0).'"><h5 class="title"> '.$value['group_name'].'</h5></a>
 			                        <div class="desc">
 			                            <small>by</small> <a href="javascript:;">'.$value['group_name'].'</a>
 			                        </div>
@@ -50,12 +88,93 @@ class Groups extends MY_Controller
 				}
 			} 
 		}else {
-				$groups = '<center><h5 class="title">You are not yet registered in any group</h5><h6>Please Contact the group Module leader</h6></center>';
+				// $groups = '<center><h5 class="title">You are not yet registered in any group</h5><h6>Please Contact the group Module leader</h6></center>';
 		}
+		*/
 		
 		
 
 		return $groups;
+	}
+
+	function add_group()
+	{
+		$session_data = $this->session->all_userdata();
+		$user_id = $this->session->userdata('userid');
+		// echo "<pre>";print_r($user_id);echo "</pre>";
+		$group_name = $this->input->post("group_name");
+		$grp_select = $this->input->post("grp_select");
+		$group_password = $this->input->post("group_password");
+		$group_password = ($group_password != '')? $this->input->post("group_password") :NULL;
+		
+		$auth_or_nah = (isset($group_password))? 1 : 0;
+
+		$grp_info = array();
+		$grp_data = array(
+			'group_name' => $group_name, 
+			'managed_by' => $user_id, 
+			'authentication' => $auth_or_nah, 
+			'password' => $group_password 
+			);
+
+		array_push($grp_info, $grp_data);
+
+		$this->db->insert_batch('groups',$grp_info);
+
+		$grp_id = mysql_insert_id();
+		$std_grp_data = array();
+		$std_grp = array(
+			'group_id' => $grp_id,
+			'user_id' => $user_id 
+			);
+		array_push($std_grp_data, $std_grp);
+
+		$this->db->insert_batch('student_groups',$std_grp_data);
+
+		redirect(base_url().'groups');
+	}
+
+	function group_auth($group_id,$rights,$status = NULL){
+		$group_id_clean = $this->hash_reverse($group_id);
+		$rights_clean = $this->hash_reverse($rights);
+		$data['student_data'] = $this->student_model->get_student_data($this->session->userdata('userid'));
+		$check_auth = $this->group_model->get_auth_status($group_id_clean);
+		$group_data = $this->group_model->get_group($group_id_clean);
+		$user_id = $this->session->userdata('userid');
+		// echo "<pre>";print_r($group_data);exit;
+		if ($check_auth[0]['authentication'] != 0) {
+			if ($group_data[0]['managed_by'] == $user_id) {
+				$this->viewNotes($group_id,$rights);
+			}else{
+				$data['content'] = 'pass_page';
+				$data['group_id'] = $group_data[0]['group_id']; 
+				$data['rights'] = $rights;
+				$this->load->view('student/student_template', $data);
+			}
+			
+		}else{
+				$this->viewNotes($group_id,$rights);
+		}
+		
+	}
+
+	function group_authenicate(){
+		$enrollment_key = $this->input->post("enrollment_key");
+		$group_id = $this->input->post("something");
+		$rights = $this->input->post("rght");
+
+		$result = $this->group_model->group_auth($enrollment_key,$group_id);
+
+		$group_id_hashed = $this->_hashID($group_id);
+		$rights_hashed = $this->_hashID($rights);
+		// echo "<pre>"; print_r($group_id);exit;
+		
+		if ($result['truth'] == "TRUE") {
+			// echo "Hello";
+			redirect(base_url().'groups/viewNotes/'.$group_id_hashed.'/'.$rights_hashed);
+		}else{
+
+		}
 	}
 
 	function viewNotes($courseID,$rights)
@@ -66,6 +185,7 @@ class Groups extends MY_Controller
 		*/
 		$courseID = $this->hash_reverse($courseID);
 		$rights = $this->hash_reverse($rights);
+		// echo $courseID;exit;
 		$data['student_data'] = $this->student_model->get_student_data($this->session->userdata('userid'));
 		$data['group_data'] = $this->group_notes($courseID,$rights);
 		$data['rights'] = $rights;
@@ -80,14 +200,14 @@ class Groups extends MY_Controller
 		$notes = $this->group_model->get_group_data($courseID);
 		$group = $this->group_model->get_group($courseID);
 		$topics = $this->group_model->get_group_topics($courseID);
-		// echo "<pre>";print_r($notes);die();
+		// echo "<pre>";print_r($courseID);die();
 		// echo $this->session->userdata('userid');die();
 		if ($notes) {
 			foreach ($topics as $k => $v) {
 				$list_notes .= '<li>
                                 <div class="result-info">
                                     <h4 class="title"><a href="javascript:;">'.$v['topic'].'</a></h4>
-                                    <p class="location">United State, BY 10089</p>
+                                    <p class="location">UMS</p>
                                     <p class="desc" style="max-height: none;">';
 				foreach ($notes as $key => $value) {
 					if ($v['topic'] == $value['topic']) {

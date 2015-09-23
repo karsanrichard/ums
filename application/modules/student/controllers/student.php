@@ -1,8 +1,9 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Student extends MY_Controller {
-	public function __construct(){
+	class Student extends MY_Controller {
+		public function __construct(){
 		$this -> load ->model('student_model');
+		$this->check_login();
 	}
 
 	public function index()

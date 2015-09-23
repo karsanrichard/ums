@@ -122,6 +122,24 @@ class MY_Controller extends MX_Controller
 		return $this->session->userdata('user_table');
 
 	}
+
+	function check_login($current = NULL)
+    {
+        if(!$this->session->userdata('logged_in'))
+        {
+            redirect(base_url() . 'auth');
+        }
+
+        else
+        {
+            $usertype = $this->session->userdata('usertype');
+
+            if($usertype != $current)
+            {
+                redirect(base_url() . 'auth');
+            }
+        }
+    }
     
 }
 

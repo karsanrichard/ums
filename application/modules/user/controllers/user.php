@@ -11,6 +11,7 @@ class User extends MY_Controller
 		{
 			redirect('home');
 		}
+		$this->check_login();
 	}
 
 	public function registration()
