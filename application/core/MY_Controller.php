@@ -140,6 +140,12 @@ class MY_Controller extends MX_Controller
             }
         }
     }
+
+    public function get_unread_count(){
+		$user_id = $this->session->userdata('userid');
+    	$unread_messages = $this->student_model->get_unread_messages_count($user_id);
+    	return $unread_messages[0]['unread_count'];
+    }
     
 }
 

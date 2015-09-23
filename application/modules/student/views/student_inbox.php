@@ -54,7 +54,7 @@
                     <!-- end btn-group -->
                     <!-- begin btn-group -->
                     <div class="btn-group">
-                        <button class="btn btn-sm btn-white" data-toggle="tooltip" data-placement="top" data-title="Refresh" data-original-title="" title=""><i class="fa fa-refresh"></i></button>
+                        <button class="btn btn-sm btn-white btn-refresh" data-toggle="tooltip" data-placement="top" data-title="Refresh" data-original-title="" title=""><i class="fa fa-refresh"></i></button>
                     </div>
                     <!-- end btn-group -->
                     <!-- begin btn-group -->
@@ -125,3 +125,9 @@
     </div>
     <!-- end vertical-box -->
 </div>
+
+<script>
+    $(".btn-refresh").click(function(){
+        location.reload();
+    });
+</script>

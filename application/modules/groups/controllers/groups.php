@@ -17,6 +17,7 @@ class Groups extends MY_Controller
 	function index()
 	{
 		$user_id = $this->session->userdata('userid');
+		$data['unread_messages_count'] = $this->get_unread_count();
 		$data['student_data'] = $this->student_model->get_student_data($user_id);
 		$data['groups'] = $this->view_groups();
 		$data['content'] = 'groups_v';
@@ -101,6 +102,7 @@ class Groups extends MY_Controller
 	{
 		$session_data = $this->session->all_userdata();
 		$user_id = $this->session->userdata('userid');
+		$data['unread_messages_count'] = $this->get_unread_count();
 		// echo "<pre>";print_r($user_id);echo "</pre>";
 		$group_name = $this->input->post("group_name");
 		$grp_select = $this->input->post("grp_select");
@@ -137,6 +139,7 @@ class Groups extends MY_Controller
 	function group_auth($group_id,$rights,$status = NULL){
 		$group_id_clean = $this->hash_reverse($group_id);
 		$rights_clean = $this->hash_reverse($rights);
+		$data['unread_messages_count'] = $this->get_unread_count();
 		$data['student_data'] = $this->student_model->get_student_data($this->session->userdata('userid'));
 		$check_auth = $this->group_model->get_auth_status($group_id_clean);
 		$group_data = $this->group_model->get_group($group_id_clean);
@@ -185,6 +188,7 @@ class Groups extends MY_Controller
 		*/
 		$courseID = $this->hash_reverse($courseID);
 		$rights = $this->hash_reverse($rights);
+		$data['unread_messages_count'] = $this->get_unread_count();
 		// echo $courseID;exit;
 		$data['student_data'] = $this->student_model->get_student_data($this->session->userdata('userid'));
 		$data['group_data'] = $this->group_notes($courseID,$rights);

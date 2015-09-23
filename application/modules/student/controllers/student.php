@@ -12,6 +12,7 @@
 		$user_id = $this->session->userdata('userid');
 		$student_data = $this->student_model->get_student_data($user_id);
 		$data['student_data'] = $student_data;
+		$data['unread_messages_count'] = $this->get_unread_count();
 		// echo "<pre>";print_r($data['student_data']);echo "</pre>";exit;
 		$this ->load ->view('student_template',$data);
 	}
@@ -29,12 +30,14 @@
 		$data['messages'] = $messages;
 		$data['message_count'] = count($messages);
 		$data['unread_count'] = $unread_messages;
+		$data['unread_messages_count'] = $this->get_unread_count();
 		$data['content'] = "student/student_inbox";
 		$this->load->view('student_template',$data);
 	}
 
 	public function student_msg_details($msg_id){
 		$user_id = $this->session->userdata('userid');
+		$data['unread_messages_count'] = $this->get_unread_count();
 		$student_data = $this->student_model->get_student_data($user_id);
 		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
 		$data['student_data'] = $student_data;
@@ -53,6 +56,7 @@
 
 	public function student_compose_messsage($msg_id = NULL){
 		$user_id = $this->session->userdata('userid');
+		$data['unread_messages_count'] = $this->get_unread_count();
 		$student_data = $this->student_model->get_student_data($user_id);
 		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
 		$data['student_data'] = $student_data;
@@ -85,6 +89,7 @@
 
 	public function reply_message($reply_id = NULL){
 		$user_id = $this->session->userdata('userid');
+		$data['unread_messages_count'] = $this->get_unread_count();
 		$student_data = $this->student_model->get_student_data($user_id);
 		// echo "<pre>";print_r($student_data);echo "</pre>";exit;
 		$data['student_data'] = $student_data;
@@ -116,6 +121,7 @@
 
 	public function student_groups(){
 		$user_id = $this->session->userdata('userid');
+		$data['unread_messages_count'] = $this->get_unread_count();
 		$data['content_view'] = 'student/student_groups';
 
 		// echo $user_id;exit;

@@ -5,11 +5,14 @@
         <ul class="nav">
             <li class="nav-profile">
                 <div class="image">
-                    <a href="javascript:;"><img src="<?php echo base_url().'assets/images/developers/richard.jpg'; ?>" alt="" /></a>
+                    <!-- <a href="javascript:;"><img src="<?php echo base_url().'assets/images/developers/richard.jpg'; ?>" alt="" /></a> -->
+                    <center>
+                    <i style="font-size: 38px;color:#00acac;" class="fa fa-user"></i>
+                    </center>
                 </div>
                 <div class="info">
                     <?php echo ucfirst($student_data[0]['first_name']).' '.ucfirst($student_data[0]['last_name']); ?>
-                    <small>Student</small>
+                    <small>Member</small>
                 </div>
             </li>
         </ul>
@@ -29,7 +32,7 @@
             </li>
             <li class="has-sub">
                 <a href="javascript:;">
-                    <span class="badge pull-right">10</span>
+                    <span class="badge pull-right"><?php echo $unread_messages_count; ?></span>
                     <i class="fa fa-inbox"></i> 
                     <span>Messages</span>
                 </a>
@@ -41,7 +44,7 @@
             </li>
             <li class="has-sub">
                 <a href="javascript:;">
-                    <span class="badge pull-right">10</span>
+                    <!-- <span class="badge pull-right">10</span> -->
                     <i class="fa fa-inbox"></i> 
                     <span>Group Management</span>
                 </a>
