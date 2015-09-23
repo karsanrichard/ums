@@ -67,17 +67,6 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Course</label>
-                                    <div class="col-md-9">
-                                        <select class="form-control" name="course_selection" required = "required">
-                                        	<option value="0">Select Course</option>
-                                            <?php foreach ($courses as $course) {
-                                            	echo "<option value=".$course['id'].">".$course['course_name']."</option>";
-                                            }?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <!-- <label class="col-md-3 control-label">Submit</label> -->
                                     <div class="col-md-9 col-md-offset-3">
                                         <button type="submit" class="btn btn-sm btn-success">Complete Registration</button>
